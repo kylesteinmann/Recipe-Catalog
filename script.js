@@ -12,17 +12,17 @@ function addIngredients() {
 
     let ingredient = document.createElement("input");
     ingredient.type = "text";
-    ingredient.id = "numberOfUnits";
+    ingredient.id = "ingredient";
     ingredient.className = "col";
-    ingredient.placeholder = "Number of Units";
+    ingredient.placeholder = "Ingredient";
 
-    let ingredientList = document.getElementsByClassName("ingredientList");
-
+    let ingredientList = document.querySelector(".ingredientList");
+   
     ingredientList.appendChild(numberOfUnits);
     ingredientList.appendChild(unit);
     ingredientList.appendChild(ingredient);
 }; 
 
-let addIngredientsButton = document.getElementsByClassName("addIngredient");
+let addIngredientsButton = document.querySelector(".addIngredient");
 
-addIngredientsButton.addEventListener("", addIngredients());
+addIngredientsButton.addEventListener("click", addIngredients());
