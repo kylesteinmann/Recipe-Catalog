@@ -1,0 +1,12 @@
+header {
+    background-color: maroon;
+    color: white;
+    font-size:30px;
+}
+.row .col {
+    margin:5px;
+}
+
+div {
+    padding:20px;
+}
