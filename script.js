@@ -13,14 +13,16 @@ function addIngredients() {
     let ingredient = document.createElement("input");
     ingredient.type = "text";
     ingredient.id = "numberOfUnits";
-    ingredient.className = "col"
-    ingredient.placeholder = "Number of Units"
+    ingredient.className = "col";
+    ingredient.placeholder = "Number of Units";
 
     let ingredientList = document.getElementsByClassName("ingredientClassList");
 
-    ingredientList.appendChild(numberOfUnits)
-} 
+    ingredientList.appendChild(numberOfUnits);
+    ingredientList.appendChild(unit);
+    ingredientList.appendChild(ingredient);
+}; 
 
-let addIngredientsButton = document.getElementsByClassName("addIngredient")
+let addIngredientsButton = document.getElementsByClassName("addIngredient");
 
-addIngredientsButton.addEventListener("click", addIngredients())
+addIngredientsButton.addEventListener("", addIngredients());
