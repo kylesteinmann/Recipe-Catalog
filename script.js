@@ -16,7 +16,7 @@ function addIngredients() {
     ingredient.className = "col";
     ingredient.placeholder = "Number of Units";
 
-    let ingredientList = document.getElementsByClassName("ingredientClassList");
+    let ingredientList = document.getElementsByClassName("ingredientList");
 
     ingredientList.appendChild(numberOfUnits);
     ingredientList.appendChild(unit);
