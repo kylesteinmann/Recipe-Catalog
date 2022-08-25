@@ -10,3 +10,7 @@ header {
 div {
     padding:20px;
 }
+
+.ingredientContainer {
+    padding:0;
+}
