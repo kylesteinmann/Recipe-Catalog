@@ -1,29 +1,32 @@
 let addIngredientsButton = document.querySelector(".addIngredient");
 
 addIngredientsButton.addEventListener("click", () => {
+
+    let ingredientContainer = document.createElement("div");
     let numberOfUnits = document.createElement("input");
+    let unit = document.createElement("input");
+    let ingredient = document.createElement("input");
+    let ingredientList = document.querySelector(".ingredientList");
+    
+    ingredientContainer.className = "ingredientContainer"
     
     numberOfUnits.type = "text";
     numberOfUnits.id = "numberOfUnits";
-    numberOfUnits.className = "col row";
+    numberOfUnits.className = "col";
     numberOfUnits.placeholder = "Number of Units";
-
-    let unit = document.createElement("input");
-    
+       
     unit.type = "select";
     unit.id = "unit";
     unit.className = "col";
-
-    let ingredient = document.createElement("input");
-    
+        
     ingredient.type = "text";
     ingredient.id = "ingredient";
     ingredient.className = "col";
     ingredient.placeholder = "Ingredient";
-
-    let ingredientList = document.querySelector(".ingredientList");
+    
+    ingredientList.appendChild(ingredientContainer)
    
-    ingredientList.appendChild(numberOfUnits);
-    ingredientList.appendChild(unit);
-    ingredientList.appendChild(ingredient);
+    ingredientContainer.appendChild(numberOfUnits);
+    ingredientContainer.appendChild(unit);
+    ingredientContainer.appendChild(ingredient);
 });
