@@ -8,6 +8,7 @@ let i = (-1);
 
 addIngredientsButton.addEventListener("click", () => {
     
+// creates next ingredient input boxes when add ingredient button is checked. 
 
     i = i + 1;
     
@@ -41,7 +42,7 @@ addIngredientsButton.addEventListener("click", () => {
     ingredientContainer.appendChild(unit);
     ingredientContainer.appendChild(ingredient);
    
-    
+    // adds and updates recipe object when add ingredient button is clicked. 
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
     recipeMethod.name = nameText;
@@ -54,16 +55,15 @@ addIngredientsButton.addEventListener("click", () => {
         let ingredientInput = document.querySelector("#ingredient" + (i - 1));
         let ingredientText = ingredientInput.value; 
         recipeMethod[ingredientKey] = (numberOfUnitsText + " " + unitText + " " + ingredientText)
-    };
-
-    
-    
-    console.log(recipeMethod)
-    console.log(ingredientListArray)
-    console.log(i)
-  
+    }; 
 });
+
 
 let addRecipeButton = document.querySelector(".addRecipe")
 
+//object recipe into array as a method after add recipe is clicked. 
+
+addRecipeButton.addEventListener("click", () => {
  ingredientListArray.push(recipeMethod);
+ 
+});
