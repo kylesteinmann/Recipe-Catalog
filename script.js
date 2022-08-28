@@ -4,30 +4,34 @@ let ingredientList = document.querySelector(".ingredientList");
 let ingredientListArray = [];
 let recipeMethod = {}
 let addedIngredientsArray = [];
+let i = (-1);
 
 addIngredientsButton.addEventListener("click", () => {
+    
 
+    i = i + 1;
+    
     let ingredientContainer = document.createElement("div");
     let numberOfUnits = document.createElement("input");
     let unit = document.createElement("input");
     let ingredient = document.createElement("input");
+   
+    let ingredientKey = "ingredient" + i;
       
-    let i = 0;
-
     ingredientContainer.className = "ingredientContainer row";
     
     numberOfUnits.type = "text";
-    numberOfUnits.id = "numberOfUnits";
+    numberOfUnits.id = "numberOfUnits"  + i;
     numberOfUnits.className = "col form-control";
     numberOfUnits.placeholder = "Number of Units";
        
     unit.type = "text";
-    unit.id = "unit";
+    unit.id = "unit"  + i;
     unit.className = "col form-control";
     unit.placeHolder = "Measuring Unit"
         
     ingredient.type = "text";
-    ingredient.id = "ingredient";
+    ingredient.id = "ingredient"  + i;
     ingredient.className = "col form-control";
     ingredient.placeholder = "Ingredient";
     
@@ -37,21 +41,29 @@ addIngredientsButton.addEventListener("click", () => {
     ingredientContainer.appendChild(unit);
     ingredientContainer.appendChild(ingredient);
    
+    
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
-    let numberOfUnitsInput = document.querySelector("#numberOfUnits");
-    let numberOfUnitsText = numberOfUnitsInput.value;
-    let unitInput = document.querySelector("#unit");
-    let unitText = unitInput.value;
-    let ingredientInput = document.querySelector("#ingredient");
-    let ingredientText = ingredientInput.value; 
-
     recipeMethod.name = nameText;
-    addedIngredientsArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);   
-    recipeMethod.ingredient = addedIngredientsArray
-    ingredientListArray.push(recipeMethod)
+   
+    if (i>0) {
+        let numberOfUnitsInput = document.querySelector("#numberOfUnits" + (i - 1));
+        let numberOfUnitsText = numberOfUnitsInput.value;
+        let unitInput = document.querySelector("#unit" + (i - 1));
+        let unitText = unitInput.value;
+        let ingredientInput = document.querySelector("#ingredient" + (i - 1));
+        let ingredientText = ingredientInput.value; 
+        recipeMethod[ingredientKey] = (numberOfUnitsText + " " + unitText + " " + ingredientText)
+    };
+
+    
     
     console.log(recipeMethod)
     console.log(ingredientListArray)
-   i++
+    console.log(i)
+  
 });
+
+let addRecipeButton = document.querySelector(".addRecipe")
+
+ ingredientListArray.push(recipeMethod);
