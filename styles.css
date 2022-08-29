@@ -14,3 +14,8 @@ div {
 .ingredientContainer {
     padding:0;
 }
+
+.recipeCard{
+    color:black;
+    background-color:blue;
+}

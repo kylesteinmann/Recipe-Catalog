@@ -3,7 +3,7 @@ let ingredientList = document.querySelector(".ingredientList");
 let ingredientListArray = [];
 let recipeMethod = {}
 let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
-let = recipeForm = document.querySelector(".recipeForm");
+let recipeForm = document.querySelector(".recipeForm");
 let ingredientIncrement = 0;
 
 function addTextInputs(){
@@ -80,15 +80,13 @@ console.table(recipesArray);
 // pull and create recipe cards from local storage array. 
 
 //................NOT FINISHED...........................................................
-for(i = 0; i < recipesArray.length; i++) {
+// for(i = 0; i < recipesArray.length; i++) {
 
-    let recipeCardContainer = document.querySelector(".recipeCardContainer");
-    let recipeCard = document.createElement("div");
+//     let recipeContainer = document.querySelector(".recipeCardsContainer");
+//     let recipeCard = document.createElement("div");
 
-    recipeCard.className = "recipeCard";
-    
-    recipeCardContainer.appendChild(recipeCard);
+//     recipeContainer.appendChild(recipeCard);
 
-    recipeCard.innerText(recipesArray[i]);
-};
-console.table(recipesArray);
+//     recipeCard.textContent(recipesArray[i]);   
+// };
+
