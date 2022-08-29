@@ -1,21 +1,17 @@
 let addIngredientsButton = document.querySelector(".addIngredient");
 let ingredientList = document.querySelector(".ingredientList");
-
 let ingredientListArray = [];
 let recipeMethod = {}
 let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
-
 let = recipeForm = document.querySelector(".recipeForm");
- 
 let ingredientIncrement = 0;
 
 function addTextInputs(){
-    
     let ingredientKey = "ingredient" + ingredientIncrement;
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
     recipeMethod.name = nameText;
-    ;
+
     if (ingredientIncrement>0) {
         let numberOfUnitsInput = document.querySelector("#numberOfUnits" + (ingredientIncrement -1));
         let numberOfUnitsText = numberOfUnitsInput.value;
@@ -30,7 +26,6 @@ function addTextInputs(){
 addIngredientsButton.addEventListener("click", () => {
     
 // creates next ingredient input boxes when add ingredient button is checked. 
-    
     let ingredientContainer = document.createElement("div");
     let numberOfUnits = document.createElement("input");
     let unit = document.createElement("input");
@@ -58,6 +53,7 @@ addIngredientsButton.addEventListener("click", () => {
     ingredientContainer.appendChild(numberOfUnits);
     ingredientContainer.appendChild(unit);
     ingredientContainer.appendChild(ingredient);
+
 // adds and updates recipe object when add ingredient button is clicked. 
     addTextInputs();
     
@@ -81,18 +77,18 @@ addRecipeButton.addEventListener("click", () => {
 
 console.table(recipesArray);
 
-// pull and great recipe cards from local storage array. 
+// pull and create recipe cards from local storage array. 
 
 //................NOT FINISHED...........................................................
-// for(i = 0; i < recipesArray.length; i++) {
+for(i = 0; i < recipesArray.length; i++) {
 
-//     let recipeCardContainer = document.querySelector(".recipeCardContainer");
-//     let recipeCard = document.createElement("div");
+    let recipeCardContainer = document.querySelector(".recipeCardContainer");
+    let recipeCard = document.createElement("div");
 
-//     recipeCard.className = "recipeCard";
+    recipeCard.className = "recipeCard";
     
-//     recipeCardContainer.appendChild(recipeCard);
+    recipeCardContainer.appendChild(recipeCard);
 
-//     recipeCard.innerText(recipesArray[i]);
-// };
-// console.table(recipesArray);
+    recipeCard.innerText(recipesArray[i]);
+};
+console.table(recipesArray);
