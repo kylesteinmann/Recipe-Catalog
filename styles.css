@@ -1,21 +1,68 @@
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 header {
     background-color: maroon;
     color: white;
     font-size:30px;
+    padding:5px 20px;
 }
 .row .col {
     margin:5px;
 }
-
 div {
     padding:20px;
 }
-
-.ingredientContainer {
+.ingredientEntryContainer {
+    padding:0;
+    margin:20px;
+}
+.recipeCard {
+    margin:10px;
+    padding:0;
+    border:solid 2px black;
+    border-radius:15px;
+    max-width:200px;
+    width:20vw;
+    background-color:antiquewhite;
+}
+.individualIngredients {
+    padding:5px 5px 0px 10px;
+    margin:0;
+    font-size:15px;
+}
+.individualRecipeName {
+    display:flex;
+    margin:0;
+    padding:0;
+    align-items: center;
+    justify-content: center;
+    background-color:maroon;
+    color:white;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    font-size:25px;
+}
+.ingredientList {
     padding:0;
 }
 
-.recipeCard{
-    color:black;
-    background-color:blue;
+.recipeCardsContainer{
+    Display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width:450px;
+}
+.recipes {
+    margin:0;
+    padding:0;
+    width:100vw;
+}
+.recipeName{
+    margin: 10px;
+}
+
+.recipeForm {
+    margin:0 0 10px 10px
 }

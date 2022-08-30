@@ -8,8 +8,8 @@ let addRecipeButton = document.querySelector(".addRecipe");
 let ingredientClassIncrement = 0
 
 function createIngredientInputs() {
-    let ingredientContainer = document.createElement("div");
-    ingredientContainer.className = "ingredientContainer row";
+    let ingredientEntryContainer = document.createElement("div");
+    ingredientEntryContainer.className = "ingredientEntryContainer";
 
     let numberOfUnits = document.createElement("input");
     numberOfUnits.type = "text";
@@ -29,10 +29,10 @@ function createIngredientInputs() {
     ingredient.className = "col form-control";
     ingredient.placeholder = "Ingredient";
     
-    ingredientList.appendChild(ingredientContainer);
-    ingredientContainer.appendChild(numberOfUnits);
-    ingredientContainer.appendChild(unit);
-    ingredientContainer.appendChild(ingredient);
+    ingredientList.appendChild(ingredientEntryContainer);
+    ingredientEntryContainer.appendChild(numberOfUnits);
+    ingredientEntryContainer.appendChild(unit);
+    ingredientEntryContainer.appendChild(ingredient);
     
 }
 function addTextInputs(){
@@ -64,11 +64,15 @@ function createRecipeCards() {
 
         let recipeContainer = document.querySelector(".recipeCardsContainer");
         let recipeCard = document.createElement("div");
-        let recipeCardName = document.createElement("h1")
+        recipeCard.className = "recipeCard"
+        let recipeCardName = document.createElement("h1");
+        recipeCardName.className = ("individualRecipeName")
         
     
         let recipeData = recipesArray[i];
         let recipeNameString = recipeData.name;
+        
+        
         recipeCardName.innerText = recipeNameString;
         
         recipeContainer.appendChild(recipeCard);
@@ -77,7 +81,8 @@ function createRecipeCards() {
         let ingredientsString = recipeData.ingredients;
 
         for(index = 0; index < ingredientsString.length; index++) {
-        let recipeCardIngredients = document.createElement("p")        
+        let recipeCardIngredients = document.createElement("p")
+        recipeCardIngredients.className = ("individualIngredients")        
         
         recipeCardIngredients.innerText = ingredientsString[index];  
         recipeCard.appendChild(recipeCardIngredients);
@@ -103,6 +108,5 @@ addRecipeButton.addEventListener("click", () => {
     location.reload();
 });
 console.table(recipesArray);
-
-    
+   
 createRecipeCards() 
