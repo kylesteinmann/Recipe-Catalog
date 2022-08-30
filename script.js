@@ -4,9 +4,7 @@ let ingredientListArray = [];
 let recipeMethod = {}
 let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
-let ingredientIncrement = 0;
-let addRecipeButton = document.querySelector(".addRecipe")
-
+let addRecipeButton = document.querySelector(".addRecipe");
 
 function pushNameInputToObject() {
     let nameInput = document.querySelector(".recipeName");
@@ -14,16 +12,15 @@ function pushNameInputToObject() {
     recipeMethod.name = nameText;
 }
 function pushIngredientsInputToObject() {
- if (ingredientIncrement>0) {
-        let ingredientKey = "ingredient" + ingredientIncrement;
-        let numberOfUnitsInput = document.querySelector("#numberOfUnits" + (ingredientIncrement -1));
+        let numberOfUnitsInput = document.querySelector("#numberOfUnits");
         let numberOfUnitsText = numberOfUnitsInput.value;
-        let unitInput = document.querySelector("#unit" + (ingredientIncrement -1));
+        let unitInput = document.querySelector("#unit");
         let unitText = unitInput.value;
-        let ingredientInput = document.querySelector("#ingredient" + (ingredientIncrement -1));
+        let ingredientInput = document.querySelector("#ingredient");
         let ingredientText = ingredientInput.value; 
-        recipeMethod[ingredientKey] = (numberOfUnitsText + " " + unitText + " " + ingredientText);
-    }
+
+        ingredientListArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);
+        recipeMethod.ingredients = ingredientListArray
 }
 
 function addTextInputs(){
@@ -37,19 +34,19 @@ function createIngredientInputs() {
 
     let numberOfUnits = document.createElement("input");
     numberOfUnits.type = "text";
-    numberOfUnits.id = "numberOfUnits"  + ingredientIncrement;
+    numberOfUnits.id = "numberOfUnits";
     numberOfUnits.className = "col form-control";
     numberOfUnits.placeholder = "Number of Units";
     
     let unit = document.createElement("input");
     unit.type = "text";
-    unit.id = "unit"  + ingredientIncrement;
+    unit.id = "unit";
     unit.className = "col form-control";
     unit.placeholder = "Measuring Unit"
    
     let ingredient = document.createElement("input");
     ingredient.type = "text";
-    ingredient.id = "ingredient"  + ingredientIncrement;
+    ingredient.id = "ingredient";
     ingredient.className = "col form-control";
     ingredient.placeholder = "Ingredient";
     
@@ -60,11 +57,8 @@ function createIngredientInputs() {
 }
 
 addIngredientsButton.addEventListener("click", () => {
-   
 createIngredientInputs()
 addTextInputs();
-    
-    ingredientIncrement = ingredientIncrement + 1;
 });
 
 addRecipeButton.addEventListener("click", () => {
