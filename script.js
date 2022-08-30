@@ -5,28 +5,7 @@ let recipeMethod = {}
 let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
 let addRecipeButton = document.querySelector(".addRecipe");
-
-function pushNameInputToObject() {
-    let nameInput = document.querySelector(".recipeName");
-    let nameText = nameInput.value;
-    recipeMethod.name = nameText;
-}
-function pushIngredientsInputToObject() {
-        let numberOfUnitsInput = document.querySelector("#numberOfUnits");
-        let numberOfUnitsText = numberOfUnitsInput.value;
-        let unitInput = document.querySelector("#unit");
-        let unitText = unitInput.value;
-        let ingredientInput = document.querySelector("#ingredient");
-        let ingredientText = ingredientInput.value; 
-
-        ingredientListArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);
-        recipeMethod.ingredients = ingredientListArray
-}
-
-function addTextInputs(){
-    pushNameInputToObject()
-    pushIngredientsInputToObject()
-};
+let ingredientClassIncrement = 0
 
 function createIngredientInputs() {
     let ingredientContainer = document.createElement("div");
@@ -34,19 +13,19 @@ function createIngredientInputs() {
 
     let numberOfUnits = document.createElement("input");
     numberOfUnits.type = "text";
-    numberOfUnits.id = "numberOfUnits";
+    numberOfUnits.id = "numberOfUnits" + ingredientClassIncrement;
     numberOfUnits.className = "col form-control";
     numberOfUnits.placeholder = "Number of Units";
     
     let unit = document.createElement("input");
     unit.type = "text";
-    unit.id = "unit";
+    unit.id = "unit" + ingredientClassIncrement;
     unit.className = "col form-control";
     unit.placeholder = "Measuring Unit"
    
     let ingredient = document.createElement("input");
     ingredient.type = "text";
-    ingredient.id = "ingredient";
+    ingredient.id = "ingredient" + ingredientClassIncrement;
     ingredient.className = "col form-control";
     ingredient.placeholder = "Ingredient";
     
@@ -54,13 +33,65 @@ function createIngredientInputs() {
     ingredientContainer.appendChild(numberOfUnits);
     ingredientContainer.appendChild(unit);
     ingredientContainer.appendChild(ingredient);
+    
 }
+function addTextInputs(){
+    pushNameInputToObject()
+    pushIngredientsInputToObject()
+    ingredientClassIncrement++;
+};
+function pushNameInputToObject() {
+    let nameInput = document.querySelector(".recipeName");
+    let nameText = nameInput.value;
+    recipeMethod.name = nameText;
+};
+function pushIngredientsInputToObject() {
+       if(ingredientClassIncrement>0) {
+        let numberOfUnitsInput = document.querySelector("#numberOfUnits" + (ingredientClassIncrement - 1));
+        let numberOfUnitsText = numberOfUnitsInput.value;
+        let unitInput = document.querySelector("#unit" + (ingredientClassIncrement - 1));
+        let unitText = unitInput.value;
+        let ingredientInput = document.querySelector("#ingredient" + (ingredientClassIncrement - 1));
+        let ingredientText = ingredientInput.value; 
 
+        ingredientListArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);
+        recipeMethod.ingredients = ingredientListArray
+       }
+       
+};
+function createRecipeCards() {
+    for(i = 0; i < recipesArray.length; i++) {
+
+        let recipeContainer = document.querySelector(".recipeCardsContainer");
+        let recipeCard = document.createElement("div");
+        let recipeCardName = document.createElement("h1")
+        
+    
+        let recipeData = recipesArray[i];
+        let recipeNameString = recipeData.name;
+        recipeCardName.innerText = recipeNameString;
+        
+        recipeContainer.appendChild(recipeCard);
+        recipeCard.appendChild(recipeCardName);
+
+        let ingredientsString = recipeData.ingredients;
+
+        for(index = 0; index < ingredientsString.length; index++) {
+        let recipeCardIngredients = document.createElement("p")        
+        
+        recipeCardIngredients.innerText = ingredientsString[index];  
+        recipeCard.appendChild(recipeCardIngredients);
+      };
+    
+       
+         
+        
+    };
+};
 addIngredientsButton.addEventListener("click", () => {
 createIngredientInputs()
 addTextInputs();
 });
-
 addRecipeButton.addEventListener("click", () => {
     
     addTextInputs();
@@ -71,19 +102,7 @@ addRecipeButton.addEventListener("click", () => {
  
     location.reload();
 });
-
 console.table(recipesArray);
 
-// pull and create recipe cards from local storage array. 
-
-//................NOT FINISHED...........................................................
-// for(i = 0; i < recipesArray.length; i++) {
-
-//     let recipeContainer = document.querySelector(".recipeCardsContainer");
-//     let recipeCard = document.createElement("div");
-
-//     recipeContainer.appendChild(recipeCard);
-
-//     recipeCard.textContent(recipesArray[i]);   
-// };
-
+    
+createRecipeCards() 
