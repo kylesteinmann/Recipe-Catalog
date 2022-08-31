@@ -28,22 +28,26 @@ div {
     width:20vw;
     background-color:antiquewhite;
 }
+.recipeCard p:last-child {
+    padding-bottom:5px;
+}
 .individualIngredients {
-    padding:5px 5px 0px 10px;
+    padding:5px 5px 0px 15px;
     margin:0;
     font-size:15px;
 }
 .individualRecipeName {
     display:flex;
+    justify-content:space-between;
     margin:0;
-    padding:0;
+    padding:2px 10px;
     align-items: center;
-    justify-content: center;
     background-color:maroon;
     color:white;
     border-top-left-radius:10px;
     border-top-right-radius:10px;
     font-size:25px;
+    cursor:pointer;
 }
 .ingredientList {
     padding:0;
@@ -60,9 +64,19 @@ div {
     width:100vw;
 }
 .recipeName{
-    margin: 10px;
+    margin:0px;
+    padding:0px;
 }
 
 .recipeForm {
     margin:0 0 10px 10px
+}
+.removeButton {
+    position:relative;
+    background-image: url("images/RemoveButton.png");
+    background-size:cover;
+    width:20px;
+    height:20px;
+    margin:0;
+    padding:0;
 }

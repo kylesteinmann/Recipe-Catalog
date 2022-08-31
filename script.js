@@ -6,7 +6,8 @@ let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
 let addRecipeButton = document.querySelector(".addRecipe");
 let ingredientClassIncrement = 0
-
+let recipesArrayIncrement = 0
+let removeButton = document.querySelector(".removeButton");
 function createIngredientInputs() {
     let ingredientEntryContainer = document.createElement("div");
     ingredientEntryContainer.className = "ingredientEntryContainer";
@@ -65,19 +66,21 @@ function createRecipeCards() {
         let recipeContainer = document.querySelector(".recipeCardsContainer");
         let recipeCard = document.createElement("div");
         recipeCard.className = "recipeCard"
+        recipeCard.id = recipesArrayIncrement
         let recipeCardName = document.createElement("h1");
         recipeCardName.className = ("individualRecipeName")
+        let removeIcon = document.createElement("div")
+        removeIcon.classList = "removeButton"
         
-    
+
         let recipeData = recipesArray[i];
         let recipeNameString = recipeData.name;
-        
-        
+                
         recipeCardName.innerText = recipeNameString;
         
         recipeContainer.appendChild(recipeCard);
         recipeCard.appendChild(recipeCardName);
-
+        recipeCardName.appendChild(removeIcon)
         let ingredientsString = recipeData.ingredients;
 
         for(index = 0; index < ingredientsString.length; index++) {
@@ -86,13 +89,10 @@ function createRecipeCards() {
         
         recipeCardIngredients.innerText = ingredientsString[index];  
         recipeCard.appendChild(recipeCardIngredients);
-      };
-    
-       
-         
-        
+        };       
     };
 };
+
 addIngredientsButton.addEventListener("click", () => {
 createIngredientInputs()
 addTextInputs();
@@ -107,6 +107,11 @@ addRecipeButton.addEventListener("click", () => {
  
     location.reload();
 });
+removeButton.addEventListener("click", (e) => {
+     const index = e.target.node.id;
+     console.log(index)
+});
+
 console.table(recipesArray);
    
 createRecipeCards() 
