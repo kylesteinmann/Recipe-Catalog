@@ -73,8 +73,8 @@ function createRecipeCards() {
         let recipeCardName = document.createElement("h1");
         recipeCardName.className = ("individualRecipeName")
         let removeIcon = document.createElement("div")
-        removeIcon.classList = "removeIcon"
-        removeIcon.id = recipesArrayIncrement;
+        removeIcon.className = "removeIcon"
+        removeIcon.Id = recipesArrayIncrement;
         
         
 
@@ -99,6 +99,8 @@ function createRecipeCards() {
     };
 };
 
+createRecipeCards(); 
+
 addIngredientsButton.addEventListener("click", () => {
 createIngredientInputs()
 addTextInputs();
@@ -116,6 +118,18 @@ addRecipeButton.addEventListener("click", () => {
    
 });
 
+let removeRecipeIcon = document.querySelectorAll(".removeIcon");
 
-   
-createRecipeCards() 
+removeRecipeIcon.forEach(removeRecipe => {
+    removeRecipe.addEventListener("click", (e) => {
+        console.log(recipesArray)
+        recipesArray.splice(e.target.Id,1);
+        localStorage.setItem("recipes", JSON.stringify(recipesArray));
+    })
+});
+
+
+
+
+
+
