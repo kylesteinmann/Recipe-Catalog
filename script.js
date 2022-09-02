@@ -125,11 +125,6 @@ removeRecipeIcon.forEach(removeRecipe => {
         console.log(recipesArray)
         recipesArray.splice(e.target.Id,1);
         localStorage.setItem("recipes", JSON.stringify(recipesArray));
+        location.reload()
     })
 });
-
-
-
-
-
-
