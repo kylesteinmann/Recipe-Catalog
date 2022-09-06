@@ -6,7 +6,6 @@ let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
 let addRecipeButton = document.querySelector(".addRecipe");
 let ingredientClassIncrement = 0;
-let removeRecipeIcon = document.querySelectorAll(".removeIcon");
 
 function createIngredientInputs() {
     let ingredientEntryContainer = document.createElement("div");
@@ -35,7 +34,7 @@ function createIngredientInputs() {
     ingredientEntryContainer.appendChild(unit);
     ingredientEntryContainer.appendChild(ingredient);
     
-};
+}
 function idAssignment() {
     if (recipesArray.length > 0) {
         let lastUsedId = recipesArray.length - 1
@@ -45,7 +44,7 @@ function idAssignment() {
     } else {
         recipeMethod.id = 0
   }
-};
+ }
 function addTextInputs(){
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
@@ -118,22 +117,31 @@ function createRecipeCards() {
     
 };
 
+createRecipeCards(); 
+
 addIngredientsButton.addEventListener("click", () => {
 createIngredientInputs()
 addTextInputs();
 });
 addRecipeButton.addEventListener("click", () => {
     
-    addTextInputs();
+    let nameInput = document.querySelector(".recipeName");
+    let nameText = nameInput.value;
+        if(nameText != "") {
+            addTextInputs();
+            idAssignment();
+            recipesArray.push(recipeMethod); 
+        } else {
+            alert("Please enter the name of your recipe!");
+            location.reload()
+        }
 
-    idAssignment();
-
-    recipesArray.push(recipeMethod);    
-
-    localStorage.setItem("recipes", JSON.stringify(recipesArray));   
-    
+    localStorage.setItem("recipes", JSON.stringify(recipesArray));
     location.reload();
 });
+
+let removeRecipeIcon = document.querySelectorAll(".removeIcon");
+
 removeRecipeIcon.forEach(removeRecipe => {
     removeRecipe.addEventListener("click", (e) => {    
     let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
@@ -145,5 +153,3 @@ removeRecipeIcon.forEach(removeRecipe => {
     location.reload()      
     });
 });
-
-createRecipeCards(); 
