@@ -46,15 +46,25 @@ function idAssignment() {
   }
  }
 function addTextInputs(){
-    pushNameInputToObject()
-    pushIngredientsInputToObject()
-    ingredientClassIncrement++;
+    let nameInput = document.querySelector(".recipeName");
+    let nameText = nameInput.value;
+        if(nameText != "") {
+            pushNameInputToObject()
+            pushIngredientsInputToObject()
+            ingredientClassIncrement++;
+        } else {
+            alert("Please enter the name of your recipe!");
+            location.reload()
+    
+    
 };
 function pushNameInputToObject() {
     if(ingredientClassIncrement > 0){
+        
         let nameInput = document.querySelector(".recipeName");
         let nameText = nameInput.value;
-        recipeMethod.name = nameText;        
+        recipeMethod.name = nameText;          
+        };     
     ;}
 };
 function pushIngredientsInputToObject() {
