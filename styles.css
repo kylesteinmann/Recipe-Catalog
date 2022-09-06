@@ -81,3 +81,24 @@ div {
     margin:0;
     padding:0;
 }
+
+
+
+
+
+let removeRecipeIcon = document.querySelectorAll(".removeIcon");
+
+removeRecipeIcon.forEach(removeRecipe => {
+    removeRecipe.addEventListener("click", (e) => { 
+       
+    let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
+            return recipesArray.id === e.target.Id;
+        });
+        
+    recipesArray.splice(removalIndex,1);         
+    // location.reload()
+      
+     });
+   
+   
+    });

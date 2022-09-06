@@ -1,13 +1,11 @@
 let addIngredientsButton = document.querySelector(".addIngredient");
 let ingredientList = document.querySelector(".ingredientList");
 let ingredientListArray = [];
-let recipeMethod = {}
+let recipeMethod = {};
 let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
 let addRecipeButton = document.querySelector(".addRecipe");
-let ingredientClassIncrement = 0
-let recipesArrayIncrement = 0
-
+let ingredientClassIncrement = 0;
 
 function createIngredientInputs() {
     let ingredientEntryContainer = document.createElement("div");
@@ -37,6 +35,16 @@ function createIngredientInputs() {
     ingredientEntryContainer.appendChild(ingredient);
     
 }
+function idAssignment() {
+    if (recipesArray.length > 0) {
+        let lastUsedId = recipesArray.length - 1
+        let findIdIncrement = recipesArray[lastUsedId];
+        let nextIdIncrement = findIdIncrement.id 
+        recipeMethod.id = nextIdIncrement + 1
+    } else {
+        recipeMethod.id = 0
+  }
+ }
 function addTextInputs(){
     pushNameInputToObject()
     pushIngredientsInputToObject()
@@ -46,7 +54,7 @@ function pushNameInputToObject() {
     if(ingredientClassIncrement > 0){
         let nameInput = document.querySelector(".recipeName");
         let nameText = nameInput.value;
-        recipeMethod.name = nameText;
+        recipeMethod.name = nameText;        
     ;}
 };
 function pushIngredientsInputToObject() {
@@ -69,13 +77,13 @@ function createRecipeCards() {
         let recipeContainer = document.querySelector(".recipeCardsContainer");
         let recipeCard = document.createElement("div");
         recipeCard.className = "recipeCard"
-        recipeCard.id = recipesArrayIncrement
         let recipeCardName = document.createElement("h1");
         recipeCardName.className = ("individualRecipeName")
         let removeIcon = document.createElement("div")
         removeIcon.className = "removeIcon"
-        removeIcon.Id = recipesArrayIncrement;
-        
+        if(recipesArray.length > 0) {
+            removeIcon.Id = recipesArray[i].id;
+        }
         
 
         let recipeData = recipesArray[i];
@@ -94,10 +102,11 @@ function createRecipeCards() {
         
         recipeCardIngredients.innerText = ingredientsString[index];  
         recipeCard.appendChild(recipeCardIngredients);
-        recipesArrayIncrement++;
         };       
     };
+    
 };
+
 
 createRecipeCards(); 
 
@@ -109,22 +118,29 @@ addRecipeButton.addEventListener("click", () => {
     
     addTextInputs();
 
-    recipesArray.push(recipeMethod);
+    idAssignment();
 
-    localStorage.setItem("recipes", JSON.stringify(recipesArray));
- 
+    recipesArray.push(recipeMethod);    
+
+    localStorage.setItem("recipes", JSON.stringify(recipesArray));   
+    
     location.reload();
-
-   
 });
 
 let removeRecipeIcon = document.querySelectorAll(".removeIcon");
 
 removeRecipeIcon.forEach(removeRecipe => {
-    removeRecipe.addEventListener("click", (e) => {
-        console.log(recipesArray)
-        recipesArray.splice(e.target.Id,1);
-        localStorage.setItem("recipes", JSON.stringify(recipesArray));
-        location.reload()
-    })
-});
+    removeRecipe.addEventListener("click", (e) => { 
+       
+    let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
+            return recipesArray.id === e.target.Id;
+        });
+        
+    recipesArray.splice(removalIndex,1);   
+    localStorage.setItem("recipes", JSON.stringify(recipesArray));        
+    location.reload()
+      
+     });
+   
+   
+    });
