@@ -107,7 +107,6 @@ function createRecipeCards() {
     
 };
 
-
 createRecipeCards(); 
 
 addIngredientsButton.addEventListener("click", () => {
@@ -130,17 +129,13 @@ addRecipeButton.addEventListener("click", () => {
 let removeRecipeIcon = document.querySelectorAll(".removeIcon");
 
 removeRecipeIcon.forEach(removeRecipe => {
-    removeRecipe.addEventListener("click", (e) => { 
-       
+    removeRecipe.addEventListener("click", (e) => {    
     let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
             return recipesArray.id === e.target.Id;
-        });
-        
+        });    
+
     recipesArray.splice(removalIndex,1);   
     localStorage.setItem("recipes", JSON.stringify(recipesArray));        
-    location.reload()
-      
-     });
-   
-   
+    location.reload()      
     });
+});
