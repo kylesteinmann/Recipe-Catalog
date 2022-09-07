@@ -118,32 +118,38 @@ function createRecipeCards() {
     
 };
 
+createRecipeCards(); 
+
 addIngredientsButton.addEventListener("click", () => {
 createIngredientInputs()
 addTextInputs();
 });
 addRecipeButton.addEventListener("click", () => {
     
-    addTextInputs();
+    let nameInput = document.querySelector(".recipeName");
+    let nameText = nameInput.value;
+        if(nameText != "") {
+            addTextInputs();
+            idAssignment();
+            recipesArray.push(recipeMethod); 
+            localStorage.setItem("recipes", JSON.stringify(recipesArray));  
+        } else {
+            alert("Please enter the name of your recipe!");
+            location.reload()
+        }
 
-    idAssignment();
-
-    recipesArray.push(recipeMethod);    
-
-    localStorage.setItem("recipes", JSON.stringify(recipesArray));   
-    
     location.reload();
 });
+
 removeRecipeIcon.forEach(removeRecipe => {
     removeRecipe.addEventListener("click", (e) => {    
     let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
             return recipesArray.id === e.target.Id;
         });    
-
+        console.log(removalIndex)
     recipesArray.splice(removalIndex,1);   
     localStorage.setItem("recipes", JSON.stringify(recipesArray));        
-    location.reload()      
+    // location.reload()   
     });
 });
 
-createRecipeCards(); 
