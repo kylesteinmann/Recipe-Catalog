@@ -6,7 +6,6 @@ let recipesArray = JSON.parse(localStorage.getItem("recipes")) || [];
 let recipeForm = document.querySelector(".recipeForm");
 let addRecipeButton = document.querySelector(".addRecipe");
 let ingredientClassIncrement = 0;
-let removeRecipeIcon = document.querySelectorAll(".removeIcon");
 
 function createIngredientInputs() {
     let ingredientEntryContainer = document.createElement("div");
@@ -34,6 +33,7 @@ function createIngredientInputs() {
     ingredientEntryContainer.appendChild(numberOfUnits);
     ingredientEntryContainer.appendChild(unit);
     ingredientEntryContainer.appendChild(ingredient);
+    
 }
 function idAssignment() {
     if (recipesArray.length > 0) {
@@ -55,6 +55,8 @@ function addTextInputs(){
         } else {
             alert("Please enter the name of your recipe!");
             location.reload()
+    
+    
 };
 function pushNameInputToObject() {
     if(ingredientClassIncrement > 0){
@@ -77,6 +79,7 @@ function pushIngredientsInputToObject() {
         ingredientListArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);
         recipeMethod.ingredients = ingredientListArray
        }
+       
 };
 function createRecipeCards() {
     for(i = 0; i < recipesArray.length; i++) {
@@ -91,6 +94,7 @@ function createRecipeCards() {
         if(recipesArray.length > 0) {
             removeIcon.Id = recipesArray[i].id;
         }
+        
 
         let recipeData = recipesArray[i];
         let recipeNameString = recipeData.name;
@@ -110,6 +114,7 @@ function createRecipeCards() {
         recipeCard.appendChild(recipeCardIngredients);
         };       
     };
+    
 };
 
 createRecipeCards(); 
@@ -119,6 +124,7 @@ createIngredientInputs()
 addTextInputs();
 });
 addRecipeButton.addEventListener("click", () => {
+    
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
         if(nameText != "") {
@@ -134,11 +140,14 @@ addRecipeButton.addEventListener("click", () => {
     location.reload();
 });
 
+let removeRecipeIcon = document.querySelectorAll(".removeIcon");
+
 removeRecipeIcon.forEach(removeRecipe => {
     removeRecipe.addEventListener("click", (e) => {    
     let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
             return recipesArray.id === e.target.Id;
-    });   
+        });    
+
     recipesArray.splice(removalIndex,1);   
     localStorage.setItem("recipes", JSON.stringify(recipesArray));        
     location.reload()      
