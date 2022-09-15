@@ -32,6 +32,10 @@ function createIngredientInputs() {
     ingredientEntryContainer.appendChild(numberOfUnits);
     ingredientEntryContainer.appendChild(unit);
     ingredientEntryContainer.appendChild(ingredient);
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 21db9ea4996fde7e656b8011cdc4f2a6c4983188
 };
 function idAssignment() {
     if (recipesArray.length > 0) {
@@ -41,6 +45,7 @@ function idAssignment() {
         recipeMethod.id = nextIdIncrement + 1
     } else {
         recipeMethod.id = 0
+<<<<<<< HEAD
     }
 };
 function addTextInputs() {
@@ -54,6 +59,22 @@ function addTextInputs() {
         alert("Please enter the name of your recipe!");
         location.reload()
     };
+=======
+  }
+};
+function addTextInputs(){
+    let nameInput = document.querySelector(".recipeName");
+    let nameText = nameInput.value;
+        if(nameText != "") {
+            pushNameInputToObject()
+            pushIngredientsInputToObject()
+            ingredientClassIncrement++;
+        } else {
+            alert("Please enter the name of your recipe!");
+            location.reload()
+    
+    
+>>>>>>> 21db9ea4996fde7e656b8011cdc4f2a6c4983188
 };
 function pushNameInputToObject() {
     if (ingredientClassIncrement > 0) {
@@ -76,7 +97,12 @@ function pushIngredientsInputToObject() {
 
         ingredientListArray.push(numberOfUnitsText + " " + unitText + " " + ingredientText);
         recipeMethod.ingredients = ingredientListArray
+<<<<<<< HEAD
     };
+=======
+       }
+       
+>>>>>>> 21db9ea4996fde7e656b8011cdc4f2a6c4983188
 };
 function createRecipeCards() {
     for (i = 0; i < recipesArray.length; i++) {
@@ -91,6 +117,7 @@ function createRecipeCards() {
         if (recipesArray.length > 0) {
             removeIcon.Id = recipesArray[i].id;
         }
+        
 
         let recipeData = recipesArray[i];
         let recipeNameString = recipeData.name;
@@ -110,14 +137,17 @@ function createRecipeCards() {
             recipeCard.appendChild(recipeCardIngredients);
         };
     };
+    
 };
 addIngredientsButton.addEventListener("click", () => {
     createIngredientInputs()
     addTextInputs();
 });
 addRecipeButton.addEventListener("click", () => {
+    
     let nameInput = document.querySelector(".recipeName");
     let nameText = nameInput.value;
+<<<<<<< HEAD
     if (nameText != "") {
         addTextInputs();
         idAssignment();
@@ -126,17 +156,36 @@ addRecipeButton.addEventListener("click", () => {
         alert("Please enter the name of your recipe!");
         location.reload()
     }
+=======
+        if(nameText != "") {
+            addTextInputs();
+            idAssignment();
+            recipesArray.push(recipeMethod); 
+            localStorage.setItem("recipes", JSON.stringify(recipesArray));  
+        } else {
+            alert("Please enter the name of your recipe!");
+            location.reload()
+        }
+>>>>>>> 21db9ea4996fde7e656b8011cdc4f2a6c4983188
 
-    localStorage.setItem("recipes", JSON.stringify(recipesArray));
     location.reload();
 });
 removeRecipeIcon.forEach(removeRecipe => {
     removeRecipe.addEventListener("click", (e) => {
         let removalIndex = recipesArray.findIndex(function findRemovalIndex(recipesArray) {
             return recipesArray.id === e.target.Id;
+<<<<<<< HEAD
         });
         recipesArray.splice(removalIndex, 1);
         localStorage.setItem("recipes", JSON.stringify(recipesArray));
         location.reload()
+=======
+        });    
+        console.log(removalIndex)
+    recipesArray.splice(removalIndex,1);   
+    localStorage.setItem("recipes", JSON.stringify(recipesArray));        
+    // location.reload()   
+>>>>>>> 21db9ea4996fde7e656b8011cdc4f2a6c4983188
     });
 });
+
