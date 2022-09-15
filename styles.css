@@ -81,3 +81,11 @@ div {
     margin:0;
     padding:0;
 }
+.instructions {
+    display:block;
+    max-width: 523px;
+    width: 80%;
+    min-width:183px;
+    height: 50px;
+    margin-top: 10px;
+}
